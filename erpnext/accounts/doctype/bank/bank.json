@@ -54,6 +54,7 @@
   {
    "fieldname": "address_and_contact",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Address and Contact",
    "options": "fa fa-map-marker"
   },
@@ -80,6 +81,7 @@
    "collapsible": 1,
    "fieldname": "data_import_configuration_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Data Import Configuration"
   },
   {
@@ -90,7 +92,8 @@
   },
   {
    "fieldname": "section_break_4",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "plaid_access_token",
@@ -108,10 +111,11 @@
   }
  ],
  "links": [],
- "modified": "2024-06-14 15:52:51.445515",
+ "modified": "2024-09-17 09:42:19.029016",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Bank",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
