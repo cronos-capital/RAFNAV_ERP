@@ -8,41 +8,45 @@ from frappe.utils.data import now_datetime
 from frappe.utils.nestedset import get_root_of
 
 from erpnext import get_default_company
+from erpnext.stock.doctype.warehouse_type.warehouse_type import WarehouseType
 
 
 def before_tests():
-	frappe.clear_cache()
-	# complete setup if missing
-	from frappe.desk.page.setup_wizard.setup_wizard import setup_complete
+    frappe.clear_cache()
+    # complete setup if missing
+    from frappe.desk.page.setup_wizard.setup_wizard import setup_complete
 
-	if not frappe.db.a_row_exists("Company"):
-		current_year = now_datetime().year
-		setup_complete(
-			{
-				"currency": "USD",
-				"full_name": "Test User",
-				"company_name": "Wind Power LLC",
-				"timezone": "America/New_York",
-				"company_abbr": "WP",
-				"industry": "Manufacturing",
-				"country": "United States",
-				"fy_start_date": f"{current_year}-01-01",
-				"fy_end_date": f"{current_year}-12-31",
-				"language": "english",
-				"company_tagline": "Testing",
-				"email": "test@erpnext.com",
-				"password": "test",
-				"chart_of_accounts": "Standard",
-			}
-		)
+    if not frappe.db.a_row_exists("Company"):
+        current_year = now_datetime().year
+        setup_complete(
+            {
+                "currency": "USD",
+                "full_name": "Test User",
+                "company_name": "Wind Power LLC",
+                "timezone": "America/New_York",
+                "company_abbr": "WP",
+                "industry": "Manufacturing",
+                "country": "United States",
+                "fy_start_date": f"{current_year}-01-01",
+                "fy_end_date": f"{current_year}-12-31",
+                "language": "english",
+                "company_tagline": "Testing",
+                "email": "test@erpnext.com",
+                "password": "test",
+                "chart_of_accounts": "Standard",
+            }
+        )
 
-	frappe.db.sql("delete from `tabItem Price`")
+    frappe.db.sql("delete from `tabItem Price`")
 
-	_enable_all_roles_for_admin()
+    _enable_all_roles_for_admin()
 
-	set_defaults_for_tests()
+    set_defaults_for_tests()
 
-	frappe.db.commit()
+    warehouse_type = frappe.new_doc("Warehouse Type")
+    warehouse_type.name = "Transit"
+    warehouse_type.insert()
+    frappe.db.commit()
 
 
 @frappe.whitelist()
