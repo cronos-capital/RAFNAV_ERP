@@ -41,6 +41,7 @@
  ],
  "fields": [
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "account_name",
    "fieldtype": "Data",
    "in_global_search": 1,
@@ -61,6 +62,7 @@
    "options": "Account"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "bank",
    "fieldtype": "Link",
    "label": "Bank Name",
@@ -213,6 +215,7 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fetch_from": "bank.universal_branch_code",
    "fetch_if_empty": 1,
    "fieldname": "branch_code",
@@ -232,6 +235,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "eval: doc.is_company_account === 0",
    "fieldname": "contact_type",
    "fieldtype": "Link",
@@ -240,6 +244,7 @@
    "options": "DocType"
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "eval: doc.is_company_account === 0",
    "fieldname": "contact",
    "fieldtype": "Dynamic Link",
@@ -248,7 +253,7 @@
   }
  ],
  "links": [],
- "modified": "2024-09-07 16:07:55.614521",
+ "modified": "2024-09-25 10:12:27.003624",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Bank Account",
@@ -280,6 +285,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "search_fields": "bank,account",
  "sort_field": "modified",
  "sort_order": "DESC",
